@@ -1,0 +1,43 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+#include <ctype.h>
+#include <iostream>
+
+int main() {
+    printf("------Collatz Conjecture Program-----\n\n");
+    int longest_comp = 0;
+    int hailstone_value = 0;
+    int data_array[RAND_MAX];
+    for (int i = 0; i < RAND_MAX; i++) {
+        data_array[i] = i + 1;
+    }
+    for (int i = 0; i < RAND_MAX; i++) {
+        int num = data_array[i];
+        int count = 0;
+        printf("\nStarting number: %d\n", num);
+        while (num != 1) {
+            if (num % 2 == 0) {
+                num = num / 2;
+                printf("%d is even, so I divide it by 2: %d\n", num * 2, num);
+                count += 1;
+            }
+            else {
+                num = 3 * num + 1;
+                printf("%d is odd, so I calculate 3n + 1: %d\n", (num - 1) / 3, num);
+                count += 1;
+            }
+        }
+        printf("\n\nThe hailstone sequence took %d steps to reach 1\n\n", count);
+        if (count > longest_comp) {
+            longest_comp = count;
+            hailstone_value = i;
+        }
+    }
+    printf("The value in the array that takes the longest is: %d taking %d computations", hailstone_value, longest_comp);
+    printf("\n\n");
+    return 0;
+}
